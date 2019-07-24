@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'converter',
-  template: `<input type="number" [value]="baseAmount"> USD =
-            <strong>{{targetAmount}}</strong> GBP`,
+  template: `<input id="baseAmountText" type="number" [value]="baseAmount"> USD =
+            <strong id="targetAmountText" [innerText]="targetAmount"></strong> GBP`,
   styles: [
     `input[type=number] {
       width: 10ex;
