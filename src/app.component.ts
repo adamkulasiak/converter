@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'converter',
-  template: `<input id="baseAmountText" type="number" [value]="baseAmount" (input)="update($event.target.value)"> USD =
-            <strong id="targetAmountText" [innerText]="targetAmount"></strong> GBP`,
+  template: `Przelicz: <input id="baseAmountText" type="number" [(ngModel)]="baseAmount"> USD
+            <p>
+              <strong [innerText]="baseAmount"></strong> USD = 
+              <strong>{{targetAmount}}</strong> GBP
+            </p>`,
   styles: [
     `input[type=number] {
       width: 10ex;
@@ -12,12 +15,14 @@ import { Component } from '@angular/core';
   ]
 })
 export class AppComponent {
-  exchangeRate = 0.70;
-  baseAmount = 1;
-  targetAmount = this.exchangeRate;
+  exchangeRate: number = 0.70;
+  baseAmount: number = 1;
 
-  update(baseAmount) {
-    this.targetAmount = parseFloat(baseAmount) * this.exchangeRate;
+  update(baseAmount): void {
+    this.baseAmount = baseAmount;
+  }
 
+  get targetAmount() {
+    return this.baseAmount * this.exchangeRate;
   }
 }
