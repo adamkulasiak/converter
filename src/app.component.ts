@@ -2,16 +2,20 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'converter',
-  template: `Przelicz: <input id="baseAmountText" type="number" [(ngModel)]="baseAmount"> USD
-            <p>
-              <strong [innerText]="baseAmount"></strong> USD = 
-              <strong>{{targetAmount}}</strong> GBP
-            </p>`,
+  template: `<input type="number" [(ngModel)]="baseAmount" [ngClass]="{error:isValid(baseAmount), warning:baseAmount<0}"> USD =
+              <strong>{{targetAmount}}</strong> GBP`,
   styles: [
     `input[type=number] {
       width: 10ex;
       text-align: right;
-    }`
+    }
+      .error {
+        background-color: #ff5555;
+      }
+      .warning {
+        background-color: yellow;
+      }
+    `
   ]
 })
 export class AppComponent {
@@ -24,5 +28,9 @@ export class AppComponent {
 
   get targetAmount() {
     return this.baseAmount * this.exchangeRate;
+  }
+
+  isValid(value) {
+    return !Number.isFinite(value);
   }
 }
