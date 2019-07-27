@@ -1,4 +1,6 @@
 export class ExchangeService {
+
+    supportedCurrencies = ['EUR', 'GBP', 'USD', 'PLN'];
     
     private exchangeRates = {
         'USD/GBP' : 0.70,
