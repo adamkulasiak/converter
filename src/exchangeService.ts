@@ -7,10 +7,14 @@ export class ExchangeService {
         'USD/EUR' : 1.30,
         'EUR/USD' : 1.10,
         'GBP/EUR' : 1.24,
-        'GBP/USD' : 1.42
+        'GBP/USD' : 1.42,
+        'EUR/GBP' : 1.10
     }
 
     getExchangeRate(baseCurrency: string, targetCurrency: string) {
-        return this.exchangeRates[baseCurrency + '/' +targetCurrency];
+        if(baseCurrency === targetCurrency)
+            return 1;
+        else
+            return this.exchangeRates[baseCurrency + '/' +targetCurrency];
     }
 }
