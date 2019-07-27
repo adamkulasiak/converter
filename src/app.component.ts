@@ -5,9 +5,9 @@ import {ExchangeService} from './exchangeService'
   selector: 'converter',
   providers: [ExchangeService],
   template: `<input type="number" [(ngModel)]="baseAmount" [ngClass]="{error:isValid(baseAmount), warning:baseAmount<0}"> 
-              <currency-select [selected]='baseCurrency'></currency-select>
+              <currency-select [(selected)]='baseCurrency'></currency-select>
               = <strong>{{targetAmount}}</strong>
-              <currency-select [selected]='targetCurrency'></currency-select>
+              <currency-select [(selected)]='targetCurrency'></currency-select>
               `,
   styles: [
     `input[type=number] {
@@ -45,4 +45,5 @@ export class AppComponent {
   isValid(value) {
     return !Number.isFinite(value);
   }
+
 }
